@@ -1,5 +1,6 @@
 
-url <- "https://der.es.gov.br/tabela-referencia-de-precos-e-composicoes-de-custos-unitarios"
+url <-
+  "https://der.es.gov.br/tabela-referencia-de-precos-e-composicoes-de-custos-unitarios"
 
 # cria_caminho <- function(url) {
 #   paste0(url,
@@ -30,7 +31,7 @@ caminhos <- url |>
 
 prefix <- "https://der.es.gov.br"
 
-caminhos <- caminhos |> purrr::map(~ paste0(prefix, .x))
+caminhos <- caminhos |> purrr::map( ~ paste0(prefix, .x))
 
 #          )
 # }
@@ -72,14 +73,14 @@ dir_names <-
   tidyr::expand_grid(temp$V2, temp$V1) |>
   glue::glue_data("data-raw/DER/{temp$V2}/{temp$V1}/")
 
-file_names <- paste0(dir_names,file_names, ".pdf")
+file_names <- paste0(dir_names, file_names, ".pdf")
 
 # Criando os diretórios
 dir_names |> purrr::walk(dir.create, recursive = TRUE)
 
 # Fazendo download dos arquivos
 safe_download <-
-  purrr::safely(~ utils::download.file(
+  purrr::safely( ~ utils::download.file(
     url = .x ,
     destfile =  .y,
     mode = "wb",

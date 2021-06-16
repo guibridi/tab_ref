@@ -25,7 +25,7 @@ for (ifile in file.list) {
     destfile = ifile,
     method = "libcurl"
   )
-
+}
 library(rvest)
 library(xml2)
   url <- 'https://tfm.sistemas.cesan.com.br/files/e-doc/2019/01/'
@@ -92,3 +92,7 @@ apply(model_sentences, 1, function(row) {
 })
 
 
+library(readxl)
+der_edific_2021_03 <- read_excel("data-raw/IOPES/2021/03/tab_DER-EDIFICAÇÕES_2021_03_servicos.xlsx",
+                                 skip = 11)
+View(der_edific_2021_03)
